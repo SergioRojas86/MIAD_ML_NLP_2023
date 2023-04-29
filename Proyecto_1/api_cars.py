@@ -1,8 +1,10 @@
 from flask import Flask
 from flask_restx import Api, Resource, fields
 import joblib
-from Proyecto_1.model_XGB import predict_price
+#from Proyecto_1.model_XGB import predict_price 
 from flask_cors import CORS
+
+from model_XGB import predict_price
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes and origins
@@ -19,7 +21,35 @@ ns = api.namespace('predict',
 parser = api.parser()
 
 parser.add_argument(
-    'Car', 
+    'Modelo', 
+    type=str, 
+    required=True, 
+    help='Car to be analyzed', 
+    location='args')
+
+parser.add_argument(
+    'Millaje', 
+    type=str, 
+    required=True, 
+    help='Car to be analyzed', 
+    location='args')
+
+parser.add_argument(
+    'Estado (Ubicación)', 
+    type=str, 
+    required=True, 
+    help='Car to be analyzed', 
+    location='args')
+
+parser.add_argument(
+    'Marca', 
+    type=str, 
+    required=True, 
+    help='Car to be analyzed', 
+    location='args')
+
+parser.add_argument(
+    'Modelo', 
     type=str, 
     required=True, 
     help='Car to be analyzed', 
@@ -38,7 +68,7 @@ class PhishingApi(Resource):
         args = parser.parse_args()
         
         return {
-         "result": predict_proba(args['Car'])
+         "result": predict_price(args['Modelo','Millaje','Estado (Ubicación)','Marca','Modelo'])
         }, 200
     
     

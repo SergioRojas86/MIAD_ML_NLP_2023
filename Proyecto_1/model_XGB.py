@@ -5,7 +5,8 @@ import os
 
 def predict_price(features):
     
-    regressor = joblib.load(os.path.dirname(__file__) + '\car_listing_XGB.pkl')
+    regressor = joblib.load(os.path.dirname(__file__) + '/car_listing_XGB.pkl')
+    #regressor = joblib.load(os.path.dirname(__file__) + '\car_listing_XGB.pkl')
     print(regressor)
     
     dataTraining = pd.read_csv('https://raw.githubusercontent.com/albahnsen/MIAD_ML_and_NLP/main/datasets/dataTrain_carListings.zip')
