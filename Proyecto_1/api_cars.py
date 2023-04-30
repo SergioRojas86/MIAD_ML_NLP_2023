@@ -3,7 +3,6 @@ from flask_restx import Api, Resource, fields
 import joblib
 #from Proyecto_1.model_XGB import predict_price 
 from flask_cors import CORS
-
 from model_XGB import predict_price
 
 app = Flask(__name__)
@@ -21,38 +20,38 @@ ns = api.namespace('predict',
 parser = api.parser()
 
 parser.add_argument(
-    'Modelo', 
-    type=str, 
+    'Año', 
+    type=int, 
     required=True, 
-    help='Car to be analyzed', 
+    help='Año del modelo del carro', 
     location='args')
 
 parser.add_argument(
     'Millaje', 
-    type=str, 
+    type=int, 
     required=True, 
-    help='Car to be analyzed', 
+    help='Millas recorridas', 
     location='args')
 
 parser.add_argument(
-    'Estado (Ubicación)', 
+    'Estado', 
     type=str, 
     required=True, 
-    help='Car to be analyzed', 
+    help='Ubicación geográfica del carro', 
     location='args')
 
 parser.add_argument(
     'Marca', 
     type=str, 
     required=True, 
-    help='Car to be analyzed', 
+    help='Marca del carro', 
     location='args')
 
 parser.add_argument(
     'Modelo', 
     type=str, 
     required=True, 
-    help='Car to be analyzed', 
+    help='Modelo de la marca seleccionada', 
     location='args')
 
 resource_fields = api.model('Resource', {
@@ -60,15 +59,14 @@ resource_fields = api.model('Resource', {
 })
 
 @ns.route('/')
-class PhishingApi(Resource):
+class CarApi(Resource):
 
     @api.doc(parser=parser)
     @api.marshal_with(resource_fields)
     def get(self):
         args = parser.parse_args()
-        
         return {
-         "result": predict_price(args['Modelo','Millaje','Estado (Ubicación)','Marca','Modelo'])
+         "result": predict_price([args['Año'],args['Millaje'],args['Estado'],args['Marca'],args['Modelo']])
         }, 200
     
     

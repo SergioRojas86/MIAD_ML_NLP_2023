@@ -7,7 +7,7 @@ import os
 
 def predict_proba(url):
 
-    clf = joblib.load(os.path.dirname(__file__) + '/phishing_clf.pkl') 
+    clf = joblib.load(os.path.dirname(__file__) + '/phishing_clf.pkl')
 
     url_ = pd.DataFrame([url], columns=['url'])
   
@@ -21,7 +21,7 @@ def predict_proba(url):
     url_['lenght_domain'] = domain.str.len()
     url_['isIP'] = (url_.url.str.replace('.', '') * 1).str.isnumeric().astype(int)
     url_['count_com'] = url_.url.str.count('com')
-
+    
     # Make prediction
     p1 = clf.predict_proba(url_.drop('url', axis=1))[0,1]
 
