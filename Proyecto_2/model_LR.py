@@ -12,6 +12,7 @@ def predict_genre(features):
     
     regressor = joblib.load(os.path.dirname(__file__) + '/movie_genres_LR.pkl')
     le = MultiLabelBinarizer()
+    tfidf_vectorizer = TfidfVectorizer()
     
     def clean_text(text):
         text = re.sub((r'[^\w\s]'),'', text).lower() 
