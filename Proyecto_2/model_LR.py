@@ -14,6 +14,6 @@ def predict_genre(features):
     df['plot'] = str(features[0])
     
     # Make prediction
-    p1 = regressor.predict(df)[0]
+    p1 = regressor.predict(df)[0,1]
 
     return p1
