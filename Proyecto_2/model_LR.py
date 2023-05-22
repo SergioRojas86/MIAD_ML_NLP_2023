@@ -26,7 +26,7 @@ def predict_genre(features):
     ####################################################################################################################
     
     # Carga de datos de archivo .csv
-    dataTraining = pd.read_csv('https://github.com/albahnsen/MIAD_ML_and_NLP/raw/main/datasets/dataTraining.zip', encoding='UTF-8', index_col=0)x_col=0)
+    dataTraining = pd.read_csv('https://github.com/albahnsen/MIAD_ML_and_NLP/raw/main/datasets/dataTraining.zip', encoding='UTF-8', index_col=0)
     dataTraining['clean_plot'] = dataTraining['plot'].apply(clean_text)
     
     xtrain_tfidf = tfidf_vectorizer.fit_transform(dataTraining['clean_plot'])
