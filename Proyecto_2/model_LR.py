@@ -6,7 +6,7 @@ import os
 
 def predict_genre(features):
     
-    regressor = joblib.load(os.path.dirname(__file__) + '/movies_genres_LR.pkl')
+    regressor = joblib.load(os.path.dirname(__file__) + '/movie_genres_LR.pkl')
     
     dtypes = np.dtype([("plot", str)])
     df = pd.DataFrame(np.empty(0, dtype=dtypes))
