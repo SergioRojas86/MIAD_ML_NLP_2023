@@ -14,8 +14,6 @@ def predict_genre(features):
     le = MultiLabelBinarizer()
     tfidf_vectorizer = TfidfVectorizer()
     
-    dataTraining = pd.read_csv('https://github.com/albahnsen/MIAD_ML_and_NLP/raw/main/datasets/dataTraining.zip', encoding='UTF-8', index_col=0)
-    
     def clean_text(text):
         text = re.sub((r'[^\w\s]'),'', text).lower() 
         text = re.sub((r'\d+'),'', text).lower()
@@ -25,19 +23,20 @@ def predict_genre(features):
         words = re.sub(r'[^\w\s]', ' ', text).split()
         return ' '.join([wnl.lemmatize(word) for word in words if word not in stopwords])
     
+    ####################################################################################################################
+    
+    # Carga de datos de archivo .csv
+    dataTraining = pd.read_csv('https://github.com/albahnsen/MIAD_ML_and_NLP/raw/main/datasets/dataTraining.zip', encoding='UTF-8', index_col=0)x_col=0)
     dataTraining['clean_plot'] = dataTraining['plot'].apply(clean_text)
+    
+    xtrain_tfidf = tfidf_vectorizer.fit_transform(dataTraining['clean_plot'])
+    
+    ###################################################################################################################
     
     df5000 = pd.DataFrame(columns=['plot'],index=range(1))
     df5000['plot'] = features
     df5000['clean_plot'] = df5000['plot'].apply(clean_text)
-    
-    ######
-    q2 = df5000['clean_plot']
-    q2_fit = tfidf_vectorizer.fit_transform(dataTraining)
-    q = df5000['clean_plot']
-    q2_fit = tfidf_vectorizer.transform(q2)
-    #####
-    
+     
     q = df5000['clean_plot']
     q_vec = tfidf_vectorizer.transform(q)
     
