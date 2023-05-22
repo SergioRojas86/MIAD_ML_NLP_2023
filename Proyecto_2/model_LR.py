@@ -32,6 +32,6 @@ def predict_genre(features):
     q_vec = tfidf_vectorizer.transform(q)
     
     # Make prediction
-    q_pred = clf.predict(q_vec)
+    q_pred = regressor.predict(q_vec)
 
     return le.inverse_transform(q_pred)
