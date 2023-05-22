@@ -26,6 +26,8 @@ def predict_genre(features):
     df5000 = pd.DataFrame(columns=['plot'],index=range(1))
     df5000['plot'] = features
     df5000['clean_plot'] = df5000['plot'].apply(clean_text)
+    q2 = df5000['clean_plot']
+    q2_fit = tfidf_vectorizer.fit_transform(q2)
     q = df5000['clean_plot']
     q_vec = tfidf_vectorizer.transform(q)
     
