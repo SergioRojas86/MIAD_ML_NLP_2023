@@ -3,17 +3,32 @@ import numpy as np
 import joblib
 import sys
 import os
+import re
+import nltk
+from sklearn.feature_extraction.text import CountVectorizer,TfidfVectorizer
+from sklearn.preprocessing import MultiLabelBinarizer
 
 def predict_genre(features):
     
     regressor = joblib.load(os.path.dirname(__file__) + '/movie_genres_LR.pkl')
+    le = MultiLabelBinarizer()
     
-    dtypes = np.dtype([("plot", str)])
-    df = pd.DataFrame(np.empty(0, dtype=dtypes))
+    def clean_text(text):
+        text = re.sub((r'[^\w\s]'),'', text).lower() 
+        text = re.sub((r'\d+'),'', text).lower()
+        text = re.sub((r'_+'),'', text).lower()
+        wnl = nltk.stem.WordNetLemmatizer()
+        stopwords = nltk.corpus.stopwords.words('english')
+        words = re.sub(r'[^\w\s]', ' ', text).split()
+        return ' '.join([wnl.lemmatize(word) for word in words if word not in stopwords])
     
-    df['plot'] = str(features[0])
+    df5000 = pd.DataFrame(columns=['plot'],index=range(1))
+    df5000['plot'] = features
+    df5000['clean_plot'] = df5000['plot'].apply(clean_text)
+    q = df5000['clean_plot']
+    q_vec = tfidf_vectorizer.transform(q)
     
     # Make prediction
-    p1 = regressor.predict(df)[0,1]
+    q_pred = clf.predict(q_vec)
 
-    return p1
+    return le.inverse_transform(q_pred)
