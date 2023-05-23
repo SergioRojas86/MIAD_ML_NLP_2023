@@ -38,7 +38,7 @@ class MovieApi(Resource):
     def get(self):
         args = parser.parse_args()
         return {
-         "result": predict_genre([args['Plot']])
+         "The movie genre is": predict_genre([args['Plot']])
         }, 200
     
     
