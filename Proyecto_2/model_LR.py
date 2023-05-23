@@ -30,6 +30,7 @@ def predict_genre(features):
     dataTraining['clean_plot'] = dataTraining['plot'].apply(clean_text)
     
     xtrain_tfidf = tfidf_vectorizer.fit_transform(dataTraining['clean_plot'])
+    xtrain_tfidf = tfidf_vectorizer.transform(dataTraining['clean_plot'])
     
     ###################################################################################################################
     
