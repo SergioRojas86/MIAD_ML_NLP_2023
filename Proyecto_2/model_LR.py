@@ -11,7 +11,7 @@ from sklearn.preprocessing import MultiLabelBinarizer
 def predict_genre(features):
     
     regressor = joblib.load(os.path.dirname(__file__) + '/movie_genres_LR.pkl')
-    le = MultiLabelBinarizer()
+    #le = MultiLabelBinarizer()
     tfidf_vectorizer = TfidfVectorizer()
     
     def clean_text(text):
@@ -26,11 +26,11 @@ def predict_genre(features):
     ####################################################################################################################
     
     # Carga de datos de archivo .csv
-    dataTraining = pd.read_csv('https://github.com/albahnsen/MIAD_ML_and_NLP/raw/main/datasets/dataTraining.zip', encoding='UTF-8', index_col=0)
-    dataTraining['clean_plot'] = dataTraining['plot'].apply(clean_text)
+    #dataTraining = pd.read_csv('https://github.com/albahnsen/MIAD_ML_and_NLP/raw/main/datasets/dataTraining.zip', encoding='UTF-8', index_col=0)
+    #dataTraining['clean_plot'] = dataTraining['plot'].apply(clean_text)
     
-    xtrain_tfidf = tfidf_vectorizer.fit_transform(dataTraining['clean_plot'])
-    xtrain_tfidf = tfidf_vectorizer.transform(dataTraining['clean_plot'])
+    #xtrain_tfidf = tfidf_vectorizer.fit_transform(dataTraining['clean_plot'])
+    #xtrain_tfidf = tfidf_vectorizer.transform(dataTraining['clean_plot'])
     
     ###################################################################################################################
     
