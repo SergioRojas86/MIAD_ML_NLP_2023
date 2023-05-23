@@ -15,7 +15,7 @@ api = Api(
     description='Movie genre Prediction API')
 
 ns = api.namespace('predict', 
-     description='Movie genre regressor')
+     description='Movie genre logistic regressor')
    
 parser = api.parser()
 
@@ -38,7 +38,7 @@ class MovieApi(Resource):
     def get(self):
         args = parser.parse_args()
         return {
-         "The movie genre is": predict_genre([args['Plot']])
+         "result": predict_genre([args['Plot']])
         }, 200
     
     
