@@ -13,7 +13,7 @@ def predict_genre(features):
     regressor = joblib.load(os.path.dirname(__file__) + '/movie_genres_LR.pkl')
     vectorizer =joblib.load(os.path.dirname(__file__) + '/vectorizer.pkl')
     
-    #le = MultiLabelBinarizer()
+    le = MultiLabelBinarizer()
     tfidf_vectorizer = TfidfVectorizer()
     
     def clean_text(text):
