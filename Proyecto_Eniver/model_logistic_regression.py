@@ -5,8 +5,6 @@ import sys
 import os
 import re
 import nltk
-from sklearn.feature_extraction.text import CountVectorizer,TfidfVectorizer
-from sklearn.preprocessing import MultiLabelBinarizer
 
 def prediccion_genero(features):
     
