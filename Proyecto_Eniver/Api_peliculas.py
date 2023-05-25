@@ -1,7 +1,6 @@
 from flask import Flask
 from flask_restx import Api, Resource, fields
 import joblib
-#from Proyecto_1.model_XGB import predict_price 
 from flask_cors import CORS
 from model_logistic_regression import prediccion_genero
 
@@ -38,7 +37,7 @@ class MovieApi(Resource):
     def get(self):
         args = parser.parse_args()
         return {
-         "result": predict_genre([args['Plot']])
+         "result": prediccion_genero([args['Plot']])
         }, 200
     
     
