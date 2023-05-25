@@ -8,7 +8,7 @@ import nltk
 
 def prediccion_genero(features):
     
-    LR = joblib.load(os.path.dirname(__file__) + '/genero_peliculas.pkl')
+    LReg = joblib.load(os.path.dirname(__file__) + '/genero_peliculas.pkl')
     tfidfvectorizer = joblib.load(os.path.dirname(__file__) + '/tfidfvectorizer.pkl')
     mlb =joblib.load(os.path.dirname(__file__) + '/mlb.pkl')
     
@@ -29,6 +29,6 @@ def prediccion_genero(features):
     q_vec = tfidfvectorizer.transform(q)
     
     # Make prediction
-    q_pred = LR.predict(q_vec)
+    q_pred = LReg.predict(q_vec)
 
     return mlb.inverse_transform(q_pred)
