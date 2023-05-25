@@ -13,7 +13,7 @@ api = Api(
     title='Predicción genero peliculas API',
     description='Predicción genero peliculas API')
 
-ns = api.namespace('predicción', 
+ns = api.namespace('prediccion', 
      description='Predicción genero peliculas modelo')
    
 parser = api.parser()
